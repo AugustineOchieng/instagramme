@@ -31,8 +31,8 @@ ALLOWED_HOSTS = []
 # Application definition
 
 INSTALLED_APPS = [
-    'users.apps.UsersConfig',
-    'crispy_forms',
+    # 'users.apps.UsersConfig',
+    # 'crispy_forms',
     'bootstrap4',
     'myinsta',
     'django.contrib.admin',
