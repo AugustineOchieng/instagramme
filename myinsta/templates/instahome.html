@@ -1,80 +1,119 @@
 {%extends 'base.html'%}
-{% load bootstrap4 %}
-
 {% block content %}
+{{ block.super}}
+{% load bootstrap4 %}
+{% include 'navbar.html' %}
 
-<div class="container">
+<br>
+<br>
+<script src="https://use.fontawesome.com/releases/v5.0.8/js/all.js"></script>
+<div class="container-fluid">
+
+
+
   <div class="row">
-    <div class="col-md-6">
+
+    <div class="col-1"></div>
+    <div class="col-9" style="max-width:40rem; margin-top:20px;">
       {% for image in images %}
-      <!-- Card -->
-      <div class="card mb-4">
-        <div class="avatar mx-auto white" style="float:left">
-          <img src="{{image.image.url}}" class="rounded-circle"  height="15%" width="15%" alt="woman avatar">
-        </div>
-        
-        <!--Card image-->
-        <div class="view overlay">
-          <img class="card-img-top" src="{{image.image.url}}" alt="Card image cap">
-          <a href="#!">
-            <div class="mask rgba-white-slight"></div>
-          </a>
-        </div>
+
+      <div class="card mr-0" style="max-width:40rem; margin-top:10px;">
+        <div class="card-header"><img src="{{profile.profile_photo.url}}" alt=""
+            style="height:50px;width:50px; border-radius:50%; border-color: red; float:left; margin-right:15px">
+          {% for profile in user_pic %}
+
+          <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
+            style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
 
 
-        <!--Card content-->
+          {% endfor %}
+        </div>
+        <img src="{{image.image.url}}" class="card-img-top" data-target="#extraModal{{image.id}}" data-toggle="modal">
         <div class="card-body">
+          <div class="header">
+            <a id="like" href="/"><i class="far fa-heart" style="margin-right:10px;color:black;"></i></a>
+            <a href="#sema" style="color:black;"><i class="far fa-comment"></i></a>
+            <a href="/"><i class="far fa-arrow-alt-circle-up" style="margin-right:15px;color:black;"></i></a>
 
-          <!--Title-->
-          <h4 class="card-title">Card title</h4>
-          <!--Text-->
-          <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's
-            content.</p>
-          <!-- Provides extra visual weight and identifies the primary action in a set of buttons -->
-          <button type="button" class="btn btn-light-blue btn-md">Read more</button>
-
-        </div>
-
-      </div>
-      <!-- Card -->
-      {%  endfor %}
-
-
-    </div>
-    <div class="col-md-6">
-      <div class="row">
-        <div class="col-md-10">
-          <div class="container-2" style="position:fixed">
-            <div id="borderDemo">
-              <h1 class="portals">Instagram</h1>
-
-              <p>Sign up to see photots and videos from your friends</p>
-              <!-- Default horizontal form -->
-              <form>
-
-
-                <!-- Grid row -->
-                <div class="form-group row">
-                  <div class="col-sm-10">
-                    <button type="submit" class="btn btn-primary btn-md">Sign in</button>
-                  </div>
-                  <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
-                </div>
-                <!-- Grid row -->
-              </form>
-              <!-- Default horizontal form -->
-
-            </div>
-
-            <div class="mybox">
-              <p>Have an account? <a href="/">Log in</a></p>
-            </div>
           </div>
-          <div class="col-md-2"></div>
+          <div class="like-section">
+            
+            {% block scripts %}
+            <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+
+            {% bootstrap_javascript %}
+            {% endblock %}
+          </div>
+        </div>
+      </div>
+
+      {% endfor %}
+    </div>
+
+    <div class="col-2 stories" style="max-width:20rem; margin-top:20px;">
+      <div class="" style="position:fixed; width:350px">
+
+        <header style="margin-bottom:30px;margin-top:20px;">
+          {% for profile in user_pic %}
+
+          <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
+            style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
+          <p style="font-size:16px; text-align:center;">{{profile.bio}}</p>
+
+          {% endfor %}
+        </header>
+        <hr>
+        <p style="float:left; font-size:15px; font-weight:bolder; color:grey">Stories</p>
+        <p style="float:right; font-weight:bolder; font-size:15px"><a style="color:grey" href="">View All</a></p>
+        <div class="all"
+          style="overflow-y:auto; height:400px;margin-top:50px;padding:10px; border-bottom: 1px solid ; width:100%">
+          <hr>
+          {% for profile in profile %}
+          {% if profile.user != user %}
+          <div class="user_stories" style="margin-bottom:15px">
+            <img src="{{profile.profile_photo.url}}" alt=""
+              style="height:50px;width:50px; border-radius:50%; border-color: red; float:left; margin-right:15px">
+            <a href="{% url 'all' pk=profile.pk %}">
+              <p style="font-size:16px">{{profile.user}}<br>
+
+                <a href="/follow/follow/{{profile.user.id}}/"
+                  class="btn btn-outline-secondary btn-sm">{{follow}}follow</a>
+                <a href="/follow/unfollow/{{profile.user.id}}/"
+                  class="btn btn-outline-secondary btn-sm">{{unfollow}}unfollow</a>
+
+          </div>
+          {% endif %}
+          {% endfor %}
         </div>
       </div>
     </div>
   </div>
 </div>
-{{block.super}}
+<!-- Large modal -->
+{% for image in images %}
+<!-- Modal -->
+<div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel"
+  aria-hidden="true">
+  <div class="modal-dialog" role="document">
+    <div class="modal-content">
+      <div class="modal-header">
+        <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.name}}</h5>
+        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+          <span aria-hidden="true">&times;</span>
+      </div>
+
+      <div class="modal-body">
+        <img class="card-img-top" class="img-responsive" src="{{image.image.url}}" data-target="#extraModal{{image.id}}"
+          data-toggle="modal" size="100px200">
+        <p>About: {{image.caption}}</p>
+
+        <div class="modal-footer">
+          <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endfor %}
 {% endblock %}
