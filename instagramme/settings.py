@@ -80,7 +80,7 @@ WSGI_APPLICATION = 'instagramme.wsgi.application'
 
 # Database
 # https://docs.djangoproject.com/en/1.11/ref/settings/#databases
-if config('MODE')=="dev":
+if config('MODE')=="prod":
     DATABASES = {
         'default': {
             'ENGINE': 'django.db.backends.postgresql_psycopg2',
