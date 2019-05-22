@@ -1,8 +1,7 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django.utils import timezone
 from tinymce.models import HTMLField
-import datetime as dt
+
 
 class Profile(models.Model):
   profile_photo = models.ImageField(upload_to='profile_images/', default="")
@@ -18,7 +17,7 @@ class Profile(models.Model):
 
 class Image(models.Model):
     image_name = models.CharField(max_length=30)
-    image_caption = models.TextField(max_length=100)
+    image_caption = models.CharField(max_length=100)
     image = models.ImageField(upload_to = 'studio/', default="")
     date_posted = models.DateTimeField(auto_now_add=True)
     profile = models.ForeignKey(User,on_delete = models.CASCADE,null = True)
@@ -34,7 +33,7 @@ class Comments(models.Model):
     image = models.ForeignKey(Image, on_delete=models.CASCADE)
     author = models.ForeignKey(User, on_delete = models.CASCADE)
     commented = models.CharField(max_length = 200)
-    date_posted = models.DateTimeField(auto_now_add=True)
+    
     
     def __str__(self):
       comments=Comments.objects.filter(image_pk = id)

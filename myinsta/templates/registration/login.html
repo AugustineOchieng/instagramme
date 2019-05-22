@@ -4,7 +4,13 @@
 <div class="container">
   <div class="row">
     <!-- Empty div -->
-    <div class="col-md-4"></div>
+    <div class="row">
+      <div class="col-md-6">
+        <img src="https://don16obqbay2c.cloudfront.net/wp-content/themes/ecwid/images/instagram/back_phone.png"
+          height="70%" id="insta">
+
+      </div>
+      </div>
     <div class="col-md-4">
       {% if form.errors %}
         <p> Password or Username is incorrect </p>
@@ -12,7 +18,7 @@
       <div class="panel panel-default">
 
         <div class="panel-heading">
-          <h3 class="text-center">Sign In</h3>
+          <h3 class="text-center Portals">Instagram Log In</h3>
         </div>
         <div class="panel-body">
 
@@ -27,13 +33,14 @@
             <input type="hidden" name="next" value="{{next}}">
 
           </form>
-
+<p>Dont have an account? <a href="/accounts/register"> Sign up</a></p>
         </div>
 
       </div>
 
     </div>
     <!-- empty div -->
+    
     <div class="col-md-4"></div>
   </div>
 </div>
