@@ -37,6 +37,7 @@
       </li>
 
       {% if user.is_authenticated %}
+      <div id="insta">
       <li class="dropdown">
         <a class="nav-link" href="{%url 'instahomepage' %}" data-toggle="dropdown" role="button"><i
             class="far fa-heart"></i></a>
@@ -60,6 +61,7 @@
       <li>
         <a style="font-size:15px;" class='btn btn-default' href="/accounts/login">Login</a>
       </li>
+      </div>
       {% endif %}
 
 

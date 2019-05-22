@@ -80,9 +80,10 @@ def edit_profile(request):
     if request.method == 'POST':
         user = Profile.objects.get(user=request.user)
         form = NewProfileForm(request.POST, request.FILES, instance=user)
+        profile = Profile.objects.filter(user_id =current_user.id)
         if form.is_valid():
             form.save()
-        return redirect('NewProfile')
+        return redirect('instahomepage')
     else:
         form = NewProfileForm()
     return render(request,'edit_profile.html',{'form':form})
