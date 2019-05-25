@@ -1,0 +1,62 @@
+ {%extends 'base.html'%}
+ {% load bootstrap4 %}
+
+
+
+
+
+
+{% block content %}
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-6" id="insta">
+      <img src="https://don16obqbay2c.cloudfront.net/wp-content/themes/ecwid/images/instagram/back_phone.png"
+        height="70%" id="insta">
+
+    </div>
+    <div class="col-md-6">
+      <div class="row">
+        <div class="col-md-10">
+          <div class="container-2">
+            <div id="borderDemo">
+              <h1 class="portals">Instagram</h1>
+
+              <p>Sign up to see photots and videos from your friends</p>
+              <!-- Default horizontal form -->
+
+
+              <!-- Grid row -->
+              <div class="form-group row">
+                <div class="col-sm-10">
+                   <form action="/accounts/register/" method="post">
+                     {% csrf_token %}
+                     {% bootstrap_form form %}
+                     <div class="form-group">
+                       <input type="submit" class="btn btn-primary btn-sm" value="Sign Up">
+                     </div>
+
+                     <input type="hidden" name="next" value="{{next}}">
+
+                   
+                </div>
+                <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+              </div>
+              <!-- Grid row -->
+              </form>
+              <!-- Default horizontal form -->
+
+            </div>
+
+            <div class="mybox">
+              <p>Have an account? <a href="/accounts/login">Log In</a></p>
+            </div>
+          </div>
+          <div class="col-md-2"></div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{{block.super}}
+{% endblock %}

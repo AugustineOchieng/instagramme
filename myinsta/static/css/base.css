@@ -1,0 +1,93 @@
+#borderDemo {
+  border: 1px solid rgba(4, 17, 25, 0.1);
+  border-radius: 5px;
+  background: white;
+}
+.shadow-textarea textarea.form-control::placeholder {
+  font-weight: 300;
+}
+
+.shadow-textarea textarea.form-control {
+  padding-left: 0.8rem;
+}
+.container-2{
+  margin:10%;
+  height: 75%;
+  text-align: center;
+  align-content: center;
+  
+}
+.portals{
+  font-family: 'Cookie',
+  cursive;
+  font-size: 70px;
+}
+.form-group{
+  margin: 5%;
+}
+body{
+  background: #FBFBFB;
+}
+.mybox{
+    border: 1px solid rgba(4, 17, 25, 0.1);
+    border-radius: 5px;
+    background: white;
+    margin:5%;
+    width: 105%;
+}
+.rounded-circle{
+  float: left;
+  margin-left: 0%;
+}
+nav{
+  text-color: black;
+}
+@media screen only and (min-width:1000px) {
+
+
+
+  #insta{
+
+    position: fixed;
+
+
+
+  }
+
+}
+
+
+
+@media screen  and (max-width:367px) {
+
+
+
+  #insta{
+
+    display: none;
+
+
+
+  }
+
+}
+
+
+
+@media screen only and (min-width:1000px) {
+
+
+
+  .contain{
+
+    position: relative;
+
+    top: 30px !important;
+
+
+
+  }
+
+
+
+}

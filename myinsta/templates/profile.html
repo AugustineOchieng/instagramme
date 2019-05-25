@@ -1,0 +1,96 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{{block.super}}
+<div class="container">
+  <div class="row" style="margin-top: 15ch;">
+   {% for profile in user_pic %}
+
+   <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
+     style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
+   <p style="font-size:16px; text-align:center;">{{profile.bio}}</p>
+
+   {% endfor %}
+  </div>
+
+  <div class="container" style="margin-top:50px">
+
+    <div class="card text-center">
+      <div class="card-header">
+        <ul class="nav nav-tabs card-header-tabs">
+          <li class="nav-item">
+            <a class="nav-link active" href="#">Posts</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link" href="#">IGTV</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">SAVED</a>
+          </li>
+          <li class="nav-item">
+            <a class="nav-link disabled" href="#">TAGGED</a>
+          </li>
+        </ul>
+      </div>
+      <div class="card-body">
+        <div class="row">
+          {% for posts in image %}
+          <div class="col-md-4" style="padding:1.5%">
+            <a data-toggle="modal" data-target="#{{posts.id}}"><img src="{{posts.image.url}}" class="img-responsive"
+                alt="{{posts.image_name}}" style="width:320px; height:350px"></a>
+          </div>
+          <!-- Modal -->
+          <div class="modal fade" id="{{posts.id}}" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog modal-lg" role="document">
+              <div class="modal-content">
+                <div class="modal-header">
+                  <h5 class="modal-title" id="exampleModalLabel"><strong>{{posts.image_name|upper}}</strong></h5>
+                  <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                  </button>
+                </div>
+                <div class="modal-body">
+                  <img src="{{posts.image.url}}" class="img-responsive" alt="Image"
+                    style="width:750px; height:450px; padding:0;" alt="">
+
+                  <br>
+                  <div>
+                    <p> <strong>Caption: </strong>{{posts.image_caption}}</p>
+                    <p><strong>Posted on: </strong>{{posts.publish_date|timesince}}</p>
+                  </div>
+                  <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+                    <!-- <button type="button" class="btn btn-info">Copy Link</button> -->
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+          {% endfor%}
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<div class="container" style="margin-top:40px">
+  <footer class="page-footer font-medium" style="background-color:white">
+
+    <ul class="footerlist">
+      <li>ABOUT US </li>
+      <li>SUPPORT</li>
+      <li>PRESS</li>
+      <li>API</li>
+      <li>JOBS</li>
+      <li>PRIVACY</li>
+      <li>TERMS</li>
+      <li>DIRECTORY</li>
+      <li>PROFILES</li>
+      <li>HASHTAGS</li>
+      <li>LANGUAGE</li>
+      <li>© 2019 INSTAGRAM</li>
+    </ul>
+  </footer>
+</div>
+
+{% endblock %}
