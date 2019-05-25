@@ -35,7 +35,7 @@ ALLOWED_HOSTS = []
 
 # Application definition
 
-INSTALLED_APPS = [
+INSTALLED_APPS = 
     'tinymce',
     'bootstrap4',
     'myinsta',
@@ -80,8 +80,7 @@ TEMPLATES = [
 WSGI_APPLICATION = 'instagramme.wsgi.application'
 
 
-# Database
-# https://docs.djangoproject.com/en/1.11/ref/settings/#databases
+
 if config('MODE')=="prod":
     DATABASES = {
         'default': {
@@ -92,6 +91,7 @@ if config('MODE')=="prod":
             'HOST': config('DB_HOST'),
             'PORT': '',
         }
+
     }
 else:
    DATABASES = {
@@ -144,6 +144,12 @@ USE_TZ = True
 STATICFILES_STORAGE = 'whitenoise.storage.CompressedManifestStaticFilesStorage'
 
 STATIC_URL = '/static/'
+
+STATICFILES_DIRS = [
+    os.path.join(BASE_DIR, "static"),
+]
+
 MEDIA_URL = '/media/'
 MEDIA_ROOT = os.path.join(BASE_DIR, 'media')
 django_heroku.settings(locals())
+
