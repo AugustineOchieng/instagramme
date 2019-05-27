@@ -33,6 +33,7 @@
           <div class="header">
             <a id="like" href="/"><i class="far fa-heart" style="margin-right:10px;color:black;"></i></a>
             <a href="#sema" style="color:black;"><i class="far fa-comment"></i></a>
+            <p>Likes:{{ image.likes }}</p>
             <a href="/"><i class="far fa-arrow-alt-circle-up" style="margin-right:15px;color:black;"></i></a>
 
           </div>
@@ -59,6 +60,7 @@
           <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
             style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
           <p style="font-size:16px; text-align:center;">{{profile.bio}}</p>
+          
 
           {% endfor %}
         </header>

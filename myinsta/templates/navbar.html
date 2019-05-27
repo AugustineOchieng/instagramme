@@ -1,5 +1,8 @@
+{% load bootstrap4 %}
+{% load static %}
 
-
+{% block content %}
+{{ super }}
 <nav class="navbar sticky-top navbar-expand-lg navbar-fixed-top bg-light">
   <div class="container">
     <ul class="navbar-nav mr-auto">
@@ -8,7 +11,7 @@
           <i class="fas fa-camera-retro" style="width:30px;height:30px;"></i></i> <span class="sr-only">(current)</span></a>
       </li>
     </ul>
-    <a class="navbar-brand" style="color:black" href="{%url 'instahomepage' %}" id="portals" class="green-text">|
+    <a class="navbar-brand" style="color:black" href="{%url 'instahomepage' %}" class="portals" class="green-text">|
       Instagram</a>
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent"
       aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
@@ -69,3 +72,4 @@
 
   </div>
 </nav>
+{% endblock %}
