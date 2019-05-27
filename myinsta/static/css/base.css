@@ -42,6 +42,9 @@ body{
 nav{
   text-color: black;
 }
+
+
+
 @media screen only and (min-width:1000px) {
 
 
@@ -74,20 +77,3 @@ nav{
 
 
 
-@media screen only and (min-width:1000px) {
-
-
-
-  .contain{
-
-    position: relative;
-
-    top: 30px !important;
-
-
-
-  }
-
-
-
-}
