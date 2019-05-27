@@ -13,6 +13,7 @@
 
   <div class="row">
 
+
     <div class="col-1"></div>
     <div class="col-9" style="max-width:40rem; margin-top:20px;">
       {% for image in images %}
@@ -38,91 +39,129 @@
 
           </div>
           <div class="like-section">
-            
+
             {% block scripts %}
             <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
 
             {% bootstrap_javascript %}
             {% endblock %}
+
+          </div>
+          <div class="col-md-6">
+            <div class="row">
+              <div class="col-md-10">
+                <div class="container-2">
+                  <div id="borderDemo">
+                    <h1 class="portals">Instagram</h1>
+
+                    <p>Sign up to see photots and videos from your friends</p>
+                    <!-- Default horizontal form -->
+
+
+                    <!-- Grid row -->
+                    <div class="form-group row">
+                      <div class="col-sm-10">
+                        <a href="#"><button type="submit" class="btn btn-primary btn-md">Log In</button></a>
+                      </div>
+                      <p>By signing up, you agree to our Terms , Data Policy and Cookies Policy .</p>
+                    </div>
+                    <!-- Grid row -->
+                    </form>
+                    <!-- Default horizontal form -->
+
+                  </div>
+
+                  <div class="mybox">
+                    <p>Don't have an account? <a href="#">Sign Up</a></p>
+                  </div>
+
+                </div>
+              </div>
+            </div>
+
+            {% endfor %}
+          </div>
+
+          <div class="col-2 stories" style="max-width:20rem; margin-top:20px;">
+            <div class="" style="position:fixed; width:350px">
+
+              <header style="margin-bottom:30px;margin-top:20px;">
+             =======
+
+             DATABASES = {
+             'default': {
+             'ENGINE': 'django.db.backends.postgresql',
+             'NAME': 'instagus',
+             'USER': 'moringa',
+             'PASSWORD':'gus9999#'
+             >>>>>>> instagram {% for profile in user_pic %}
+
+                <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
+                  style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
+                <p style="font-size:16px; text-align:center;">{{profile.bio}}</p>
+
+
+                {% endfor %}
+              </header>
+              <hr>
+              <p style="float:left; font-size:15px; font-weight:bolder; color:grey">Stories</p>
+              <p style="float:right; font-weight:bolder; font-size:15px"><a style="color:grey" href="/logout"><i
+                    class="fas fa-sign-out-alt"></i> <br> Log Out</a></p>
+              <div class="all"
+                style="overflow-y:auto; height:400px;margin-top:50px;padding:10px; border-bottom: 1px solid ; width:100%">
+                <i class="fas fa-plus-circle"><a href="{{new_profile}}">Create new profile</a> </i>
+                <p><i class="fas fa-plus-circle"></i><br><a href="/new/post">Create new profile</a></p>
+                <i class="fas fa-pen-square"> <a href="edit_profile/">Edit my profile</a> </i>
+                <p><i class="fas fa-pen-square"></i><br><a href="edit_profile/">Edit my profile</a></p>
+                <i class="far fa-images"> <a href="new_post/">Create new Post</a> </i>
+                <p><i class="far fa-images"> </i><br><a href="new/post/">Create new Post</a></p>
+                <hr>
+                {% for profile in profile %}
+                {% if profile.user != user %}
+                <div class="user_stories" style="margin-bottom:15px">
+                  <img src="{{profile.profile_photo.url}}" alt=""
+                    style="height:50px;width:50px; border-radius:50%; border-color: red; float:left; margin-right:15px">
+                  <a href="{% url 'all' pk=profile.pk %}">
+                    <p style="font-size:16px">{{profile.user}}<br>
+
+                      <a href="/follow/follow/{{profile.user.id}}/"
+                        class="btn btn-outline-secondary btn-sm">{{follow}}follow</a>
+                      <a href="/follow/unfollow/{{profile.user.id}}/"
+                        class="btn btn-outline-secondary btn-sm">{{unfollow}}unfollow</a>
+
+                </div>
+                {% endif %}
+                {% endfor %}
+              </div>
+            </div>
           </div>
         </div>
       </div>
+      <!-- Large modal -->
+      {% for image in images %}
+      <!-- Modal -->
+      <div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel"
+        aria-hidden="true">
+        <div class="modal-dialog" role="document">
+          <div class="modal-content">
+            <div class="modal-header">
+              <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.name}}</h5>
+              <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                <span aria-hidden="true">&times;</span>
+            </div>
 
+            <div class="modal-body">
+              <img class="card-img-top" class="img-responsive" src="{{image.image.url}}"
+                data-target="#extraModal{{image.id}}" data-toggle="modal" size="100px200">
+              <p>About: {{image.caption}}</p>
+
+              <div class="modal-footer">
+                <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
+              </div>
+            </div>
+          </div>
+        </div>
+
+      </div>
       {% endfor %}
-    </div>
-
-    <div class="col-2 stories" style="max-width:20rem; margin-top:20px;">
-      <div class="" style="position:fixed; width:350px">
-
-        <header style="margin-bottom:30px;margin-top:20px;">
-          {% for profile in user_pic %}
-
-          <img class="mb-1" src="{{profile.profile_photo.url}}" alt=""
-            style="height:50px;width:50px; border-radius:50%; float:left; margin-right:15px">
-          <p style="font-size:16px; text-align:center;">{{profile.bio}}</p>
-          
-
-          {% endfor %}
-        </header>
-        <hr>
-        <p style="float:left; font-size:15px; font-weight:bolder; color:grey">Stories</p>
-        <p style="float:right; font-weight:bolder; font-size:15px"><a style="color:grey" href="/logout"><i
-              class="fas fa-sign-out-alt"></i> <br> Log Out</a></p>
-        <div class="all"
-          style="overflow-y:auto; height:400px;margin-top:50px;padding:10px; border-bottom: 1px solid ; width:100%">
-          <i class="fas fa-plus-circle"><a href="{{new_profile}}">Create new profile</a> </i>
-          <p><i class="fas fa-plus-circle"></i><br><a href="/new/post">Create new profile</a></p>
-          <i class="fas fa-pen-square"> <a href="edit_profile/">Edit my profile</a> </i>
-          <p><i class="fas fa-pen-square"></i><br><a href="edit_profile/">Edit my profile</a></p>
-          <i class="far fa-images"> <a href="new_post/">Create new Post</a> </i>
-          <p><i class="far fa-images"> </i><br><a href="new/post/">Create new Post</a></p>
-          <hr>
-          {% for profile in profile %}
-          {% if profile.user != user %}
-          <div class="user_stories" style="margin-bottom:15px">
-            <img src="{{profile.profile_photo.url}}" alt=""
-              style="height:50px;width:50px; border-radius:50%; border-color: red; float:left; margin-right:15px">
-            <a href="{% url 'all' pk=profile.pk %}">
-              <p style="font-size:16px">{{profile.user}}<br>
-
-                <a href="/follow/follow/{{profile.user.id}}/"
-                  class="btn btn-outline-secondary btn-sm">{{follow}}follow</a>
-                <a href="/follow/unfollow/{{profile.user.id}}/"
-                  class="btn btn-outline-secondary btn-sm">{{unfollow}}unfollow</a>
-
-          </div>
-          {% endif %}
-          {% endfor %}
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
-<!-- Large modal -->
-{% for image in images %}
-<!-- Modal -->
-<div class="modal fade" id="extraModal{{image.id}}" tabindex="-1" role="dialog" aria-labelledby="extraModalLabel"
-  aria-hidden="true">
-  <div class="modal-dialog" role="document">
-    <div class="modal-content">
-      <div class="modal-header">
-        <h5 class="modal-title" id="exampleModalLongTitle">Poster: {{image.name}}</h5>
-        <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-          <span aria-hidden="true">&times;</span>
-      </div>
-
-      <div class="modal-body">
-        <img class="card-img-top" class="img-responsive" src="{{image.image.url}}" data-target="#extraModal{{image.id}}"
-          data-toggle="modal" size="100px200">
-        <p>About: {{image.caption}}</p>
-
-        <div class="modal-footer">
-          <button type="button" class="btn btn-outline-btn-secondary" data-dismiss="modal">Close</button>
-        </div>
-      </div>
-    </div>
-  </div>
-
-</div>
-{% endfor %}
-{% endblock %}
+      {% endblock %}

@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+{% load bootstrap4 %}
+{% load crispy_forms_tags %}
+{% block content %}
+<div class="container">
+  <div class="row">
+    <div class="col-md-6">
+      <img src="https://don16obqbay2c.cloudfront.net/wp-content/themes/ecwid/images/instagram/back_phone.png"
+        height="70%" id="insta">
+
+    </div>
+    <div class="col-md-6">
+      <div class="col-md-10">
+        <div class="container-2">
+          <div id="borderDemo">
+            <h1 class="portals">Instagram</h1>
+
+            <p>Sign up to see photots and videos from your friends</p>
+    <div class="content-section">
+      <form method="POST">
+        {% csrf_token %}
+        <fieldset class="form-group">
+          <legend class="border-bottom mb-4">Join Today</legend>
+          
+          {%bootstrap_form form %}
+        </fieldset>
+        <div class="form-group">
+          <button class="btn btn-outline-info" type="submit">Sign Up</button>
+        </div>
+      </form>
+      </div>
+      </div>
+    </div>
+      <div class="border-top pt-3">
+        <small class="text-muted">
+          Already Have An Account? <a class="ml-2" href="#">Sign In</a>
+        </small>
+      </div>
+    </div>
+    </div>
+  </div>
+</div>
+{% endblock content %}

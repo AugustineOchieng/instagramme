@@ -4,14 +4,6 @@ from .models import Image, Profile, Comments
 from .forms import NewCommentForm, NewPostForm, NewProfileForm
 from django.core.exceptions import ObjectDoesNotExist
 
-
-# Create your views here.
-
-# def home(request):
-#   images = Image.objects.all()
-#   profiles = Profile.objects.all()
-#   comments = Comments.objects.all()
-#   return render(request, 'instahome.html', {"images": images, "profiles":profiles, "comments":comments})
 @login_required(login_url='/accounts/login/')
 def feeds(request):
     images = Image.objects.all()
@@ -111,15 +103,3 @@ def search_results(request):
      else:
          message = "You haven't seached for any users yet!"
          return render(request, 'search.html',{"message": message})
-
-# def find_profile(request,profile_id):
-#     profile_id
-#     try :
-#         profile = Profile.objects.get(user_id = profile_id)
-#         image = Image.objects.filter(profile_id = profile_id)
-
-#     except ObjectDoesNotExist:
-        
-#         raise Http404()
-
-#     return render(request, 'find_profile.html', {'profile':profile, "image":image, "poster_id":profile_id})
